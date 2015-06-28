@@ -24,4 +24,19 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		return count;
 	}
 
-}
+	public int updateEmployee(Employee employee) {
+		
+		String sql = "update employees set ename=?,sal=? where eid=?";
+		int count = jdbcTemplate.update(sql, employee.getEmployeeName(),employee.getSalary(),employee.getEmployeeId());
+		return count;
+		
+	}
+
+	public int deleteEmployee(int empId) {
+		String sql = "delete from employees where eid in ?";
+		int i = jdbcTemplate.update(sql, empId);
+		return i;
+	}
+	
+
+	}
